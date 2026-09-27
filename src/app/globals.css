@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+:root {
+  --color-bg-main: #141414;      /* Obsidian */
+  --color-bg-secondary: #1C1C1A; /* Charcoal */
+  --color-bg-card: #242421;      /* Graphite */
+
+  --color-text-primary: #F2EFE6;   /* Warm Ivory */
+  --color-text-secondary: #A6A39A; /* Stone Gray */
+
+  --color-accent-primary: #C47A5A;   /* Muted Copper */
+  --color-accent-secondary: #8C9566; /* Olive */
+  --color-highlight: #D6B98C;        /* Sand */
+
+  --color-border: #34342F; /* Dark Stone */
+}
+
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-primary);
+}
+
+/* عنصر شارة تقنية (badge) بيتكرر في كروت المشاريع والـ Skills */
+.tech-badge {
+  @apply inline-flex items-center rounded-full border border-darkstone
+         bg-charcoal px-3 py-1 text-xs text-stone;
+}
+
+/* بار التقدم في قسم Skills & Technologies */
+.skill-bar-track {
+  @apply h-1.5 w-full rounded-full bg-charcoal;
+}
+.skill-bar-fill {
+  @apply h-1.5 rounded-full bg-copper transition-all duration-700;
+}
+
+/* نبضة خفيفة جدًا، تستخدم مع أزرار زي WhatsApp عشان تلفت الانتباه بهدوء */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.subtle-pulse {
+  animation: subtle-pulse 2.5s ease-in-out infinite;
+}
+
+/* رفعة خفيفة عند الـ hover لأي كارد (مشاريع، Skills، إلخ) */
+.hover-lift {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* حركة تعويم خفيفة لصورة البروفايل في الـ Hero */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.float-soft {
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+/* سهم صغير بيرتد تحت الـ Hero يلمّح إنه فيه محتوى تحت */
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+.bounce-soft {
+  animation: bounce-soft 2s ease-in-out infinite;
+}

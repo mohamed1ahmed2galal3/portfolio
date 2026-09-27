@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+}
+
+enum Category {
+  BACKEND
+  FRONTEND
+  PROBLEM_SOLVING
+}
+
+enum ItemType {
+  PROJECT
+  LEARNING_NOTE
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(ADMIN)
+  createdAt    DateTime @default(now())
+}
+
+model Item {
+  id               String    @id @default(uuid())
+  title            String
+  shortDescription String
+  content          String
+  category         Category
+  type             ItemType
+  technologies     String[]
+  thumbnailUrl     String?
+  githubUrl        String?
+  demoUrl          String?
+  status           Status    @default(DRAFT)
+  featured         Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
